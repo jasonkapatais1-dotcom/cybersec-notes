@@ -1,0 +1,76 @@
+Before we jump into symmetric encryption, let's define the core terms we'll use throughout this room:
+
+Plaintext - A message you can read normally. Like HELLO or Patient name: Alice Smith.
+
+Ciphertext - A scrambled version that's not supposed to make sense. Like KHOOR or Sdwlhqw qdph: Dolfh Vplwk.
+
+Key - The secret ingredient that controls how scrambling and unscrambling work. Think of it as a password that the algorithm uses.
+
+Algorithm - The public recipe—the set of steps that explain how to use the key on the message. Everyone can know the algorithm. Security comes from keeping the key secret.
+
+
+
+Encryption process: plaintext + encryption algorithm + key  → ciphertext
+
+Block diagram of encryption using a secret key
+
+and then
+
+Decryption process: ciphertext + decryptiong algorithm + key   → plaintext
+
+
+
+
+To put it more practically, Alice wants to send Bob a secret letter, but it must go through the public postal system, where anyone could open it and read it.
+
+Here's what she does:
+
+She writes her message (the plaintext) on paper.
+She puts the letter in a sturdy lockbox.
+She locks it with a padlock using her key.
+She sends the locked box (the ciphertext) through the mail.
+When Bob gets the box, he uses his copy of the same key to unlock it and read the message. Anyone who intercepts the box along the way sees a locked metal box. Without the key, it's useless. The message stays private.
+
+
+That's symmetric encryption in a nutshell: one key locks the box, the same key unlocks it.
+
+
+Caesar cipher
+
+Let's say the key is 3:
+
+A shifts forward 3 spots to become D
+B becomes E
+C becomes F
+and so on.
+X becomes A (it wraps around to the start)
+
+
+To decrypt KHOOR, Bob shifts each letter backwards by 3
+
+Here's the thing: The Caesar cipher is not secure and is never used in real systems
+
+
+
+
+Enter asymmetric encryption.
+
+Two Keys Instead of One
+
+Asymmetric encryption uses two mathematically linked keys:
+
+A public key that anyone can know and use.
+A private key that only one person keeps secret.
+Here's the clever part:
+
+If you encrypt something with someone's public key, only their private key can decrypt it.
+If you encrypt something with your private key, anyone with your public key can decrypt it (this is primarily used for digital signatures, which we won't delve into here).
+
+This combo is sometimes called a hybrid approach:
+
+Asymmetric encryption solves the problem of key distribution.
+Symmetric encryption handles the heavy lifting because it's way faster.
+
+
+You might wonder: how does Alice know the public key really belongs to Bob, and not to an attacker pretending to be Bob? That's where certificates come in.
+

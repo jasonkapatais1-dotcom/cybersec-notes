@@ -1,0 +1,6 @@
+Scope: The boundaries of what is allowed to be tested during an engagement. Scope defines which systems, applications, and actions are permitted, and what is off-limits
+
+
+ One tool in an ethical hacker's arsenal is Gobuster
+
+gobuster dir --url http://www.onlineshop.thm/ -w /usr/share/wordlists/dirbuster/directory-list.txt

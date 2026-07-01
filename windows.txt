@@ -1,0 +1,53 @@
+The file system used in modern versions of  Windows  is the New Technology File System or simply  NTFS (opens in new tab).
+
+Before NTFS, there was  FAT16/FAT32 (File Allocation Table) and HPFS (High Performance File System). 
+You still see FAT partitions in use today. For example, you typically see FAT partitions in USB devices, MicroSD cards, etc.  but traditionally not on personal Windows computers/laptops or Windows servers.
+
+Another feature of NTFS is Alternate Data Streams ( ADS ).
+
+Alternate Data Streams  (ADS) is a file attribute specific to Windows  NTFS  (New Technology File System).
+
+Every file has at least one data stream ( $DATA ), and ADS allows files to contain more than one stream of data.
+From a security perspective, malware writers have used ADS to hide data.
+
+The System32 folder holds the important files that are critical for the operating system.
+
+
+users:
+Another way to access this information, and then some, is using Local User and Group Management. 
+
+Right-click on the Start Menu and click Run. Type lusrmgr.msc. See below
+
+
+UAC: User Account Control
+
+Lesson 2:
+System configuration : msconfig -> main purpose is to help diagnose startup issues.
+-Windows servers handle startup applications differently than windows client servers. 
+-only reliable way to view user-level application startups is through shell:startup  (writing this in run ofc)
+- In tools tab inside msconfig we can launch a tool by clicking on it and then the launch button or with the cmd.
+- view advanced system settings-> change perfomance settings, startup and recovery which creates a crash dump file for whenever it faces a critical error such as blue screen so analyst can understand what went wrong.
+
+Lesson 3:
+- system information: msinfo32
+-The  information in System Summary is divided into three sections:
+Hardware Resources
+Components
+Software Environment  
+  * enviroment variables
+
+Lesson 4:
+- Resource Monitor: resmon
+- In the Overview tab, Resmon has four sections:
+
+CPU
+Disk
+Network
+Memory
+
+Lesson 5:
+- Per Microsoft, "Windows Firewall offers three firewall profiles: domain, private and public".
+
+Domain - The domain profile applies to networks where the host system can authenticate to a domain controller. 
+Private - The private profile is a user-assigned profile and is used to designate private or home networks.
+Public - The default profile is the public profile, used to designate public networks such as Wi-Fi hotspots at coffee shops, airports, and other locations.

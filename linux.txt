@@ -1,0 +1,102 @@
+Read
+Write
+Execute
+
+
+In Linux, every file and directory has a set of permissions that control who can read, write, or execute it. These permissions are often displayed in symbolic format, such as:
+
+rwxrwxrwx
+This format is split into three groups:
+
+Section   Applies To	Example
+First 3	  Owner	        rwx
+Next 3	  Group	        rwx
+Last 3	  Others	rwx
+
+Each permission has a numeric value:
+
+Permission	Value
+Read (r)	4
+Write (w)	2
+Execute (x)	1
+To calculate the numeric value, we add the values together for each group.
+
+Example: rwxrwxrwx
+Break it down:
+
+Group	Permissions	Calculation	Value
+Owner	rwx	        4 + 2 + 1	7
+Group	rwx	        4 + 2 + 1	7
+Others	rwx	        4 + 2 + 1	7
+
+So:
+
+rwxrwxrwx = 777
+More Common Examples
+Symbolic	Numeric	Meaning
+rwxr-xr-x	755	Owner can do everything, others can read and execute
+rw-r--r--	644	Owner can read/write, others can only read
+rwx------	700	Only the owner has access
+
+important root directories:
+
+/etc
+/var
+/root
+/tmp
+
+
+
+
+
+Provided that we know usernames and passwords for a user on your current system and a user on the remote system. For example, let's copy an example file from our machine to a remote machine, which I have neatly laid out in the table below:
+
+Variable	Value
+The IP address of the remote system 	192.168.1.30
+User on the remote system	ubuntu
+Name of the file on the local system	important.txt
+Name that we wish to store the file as on the remote system	transferred.txt
+With this information, let's craft our scp command (remembering that the format of SCP is just SOURCE and DESTINATION)
+
+scp important.txt ubuntu@192.168.1.30:/home/ubuntu/transferred.txt
+
+And now let's reverse this and layout the syntax for using scp to copy a file from a remote computer that we're not logged into 
+
+Variable	Value
+IP address of the remote system	192.168.1.30
+User on the remote system	ubuntu
+Name of the file on the remote system	documents.txt
+Name that we wish to store the file as on our system	notes.txt
+The command will now look like the following: scp ubuntu@192.168.1.30:/home/ubuntu/documents.txt notes.txt 
+
+Here we're running echo "Hi THM" , where we expect the output to be returned to us like it is at the start. But after adding the & operator to the command, 
+we're instead just given the ID of the echo process 
+rather than the actual output -- as it is running in the background.
+
+
+foreground:what we can see run
+background: what is running in the background
+
+
+
+
+A crontab is simply a special file with formatting that is recognised by the cron process to execute each line step-by-step. Crontabs require 6 specific values:
+
+Value	Description
+MIN	What minute to execute at
+HOUR	What hour to execute at
+DOM	What day of the month to execute at
+MON	What month of the year to execute at
+DOW	What day of the week to execute at
+CMD	The actual command that will be executed.
+
+Let's use the example of backing up files. You may wish to backup "cmnatic"'s  "Documents" every 12 hours. We would use the following formatting: 
+
+0 */12 * * * cp -R /home/cmnatic/Documents /var/backups/
+
+An interesting feature of crontabs is that these also support the wildcard or asterisk (*). If we do not wish to provide a value for that specific field, i.e. we don't care what month, day, or year it is executed -- only that it is executed every 12 hours, we simply just place an asterisk.
+
+-------------------------------------------------------------------------------------------------------------------
+- An Apache2 web server
+-Logs for the fail2ban service, which is used to monitor attempted brute forces, for example
+-The UFW service which is used as a firewall

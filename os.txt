@@ -1,0 +1,20 @@
+Key Terminology
+Let’s recap the core terms you’ve learned. These definitions will help solidify your understanding before moving on to further learning.
+
+Operating system (OS)
+The core software that manages hardware, applications, and all system resources.
+Kernel space
+The OS’s highly privileged area with direct hardware access, and the home of the kernel, which directly manages hardware and system resources.
+User space
+The area where regular applications run with limited permissions for safety and system stability.
+Graphical user interface (GUI)
+The visual part of the OS, windows, icons, and menus, that lets you interact through clicking and tapping.
+Command-line interface (CLI)
+A text-based interface where you type commands to control the system with precision and speed.
+
+
+Process Management	Creates, schedules, prioritizes, and terminates running programs. The OS decides how much CPU time each process gets, making multitasking feel seamless	Opening multiple apps, like your browser, music player, and social media, without your computer freezing
+Memory Management	Allocates RAM to processes, protects the app's memory from other processes, and reclaims memory when apps are closed. When RAM runs low, the OS uses virtual memory to keep your system stable	Opening multiple app at once, the OS allocates RAM to each one and keeps them isolated so they don’t interfere or crash each other
+File System Management	Organizes files into directories, handles naming, paths, permissions, metadata (name, size, type, timestamps)	Creating a new folder, saving a photo, or setting a file to "read only"
+User Management	Handles multiple user accounts, authentication, and permissions to determine who can access what	Logging in with your password and keeping your files inaccessible to other user accounts
+Device Management	Loads drivers and provides a universal interface (hardware abstraction layer), so apps can say “print this” or “play this sound”	Plugging in a new mouse, printer, or external hard drive and having it work immediately

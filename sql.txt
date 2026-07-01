@@ -1,0 +1,35 @@
+Inside a database, information is stored in tables.
+
+Tables, Columns, and Rows
+A table resembles a spreadsheet, where information is organised neatly into rows and columns.
+
+Columns are the titles at the top of the table. They describe the type of information stored.
+Rows go across the table. Each row contains one complete set of information.
+For the café example:
+
+Columns might be: order number, drink, price, and time
+Each row is one café order
+This means:
+
+One column stores one type of information, such as prices
+One row stores all the information about a single order
+If the café sells ten drinks in one day, the table will contain ten r
+
+For example, the café owner might ask:
+
+“Show me all orders.”
+“Show me only coffee orders.”
+“Show me the cheapest drink.”
+These questions are called queries.
+
+SQL Queries Learned in This Room
+SELECT – choose what data to display
+
+FROM – choose where the data comes from
+
+WHERE – filter records based on a condition
+
+ORDER BY – sort results price for ex
+
+DESC higher to lower
+

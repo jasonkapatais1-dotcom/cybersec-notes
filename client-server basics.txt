@@ -1,0 +1,21 @@
+In the main specifications that define HTTP (also called Request for Comments, or RFC documents), there are 9 core commands. In HTTP lingo, we use the term method instead of command. Below you can see an overview of these methods:
+
+GET
+POST
+PUT
+DELETE
+PATCH
+HEAD
+OPTIONS
+CONNECT
+TRACE
+
+
+Scheme: Tells us which protocol was used: HTTP or HTTPS.
+Host: Tells us the name of the host we request resources from.
+Filename: Indicates which file we requested from the host. In our request, this is "/", which actually translates to "index.html".
+Address: Displays the IP address where the website is hosted. In our example, we are hosting the website on the same device. That's why the address 127.0.0.1 is shown.
+Status: This field indicates whether the request was successful. In our example, we received a "200 OK" status, which means that the request was successful.
+
+
+When a request is sent, we will get a response from the server. The response is divided into two parts: the response header and the response body. The response header contains metadata about the response, while the response body contains the requested content.

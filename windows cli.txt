@@ -1,0 +1,14 @@
+cd : simillar to pwd in linux tel lwhere i am also used for other, also navigate such as enter folders and go back
+dir: list directories
+dir /a: show hidden files
+dir /s: search a file
+whoami : name of the user on the computer
+hostname : name of the computer
+systeminfo
+ipconfig : This command will show the network address settings for the computer.
+ -ipconfig/all
+/? : after each command for a manual to show up
+cls: to clear the command prompt
+net: manager netwrok sources
+ - netstat: Per the help manual, this command will display protocol statistics and current TCP/IP network connections.
+ - /? will not work to get a manual of the net command so net help must be used instead 
