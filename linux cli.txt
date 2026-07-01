@@ -35,7 +35,7 @@ echo: print text that ive writen
 find -name ___ : i can also search for all the txt files or any file type for ex find -name *.txt  , i must use *
 wc : cout the number of entries in a .log
 grep: find specific things in the hundreds of logs easily
-     ex: grep "81.143.211.90" access.log
+     ex: grep "1.111.11.1" access.log
      -> -R: recursive,search all files and subfolders inside a directory 
        ex: grep -R "THM" access.log /home/tryhackme/
 

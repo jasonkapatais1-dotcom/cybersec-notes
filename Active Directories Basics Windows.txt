@@ -1,0 +1,71 @@
+Task 2 Windows Domains
+
+- Windows domain : group of users and computers under the administartion of a given buisiness
+ -> centralizes the common componenets of a widnows computer network in a single repo called Active Directory (AD) which is run by Domain Controller(DC)
+
+Advantages of having configured window domains:
+ - Centralised identity management : All users on the network can be configured from the Active Directory with low effort
+ - Managing security policies : Can change configure security policies directly from AD and apply them to users and computers on the network
+
+Real life example: AD is the component that allows school/university machine to block certain softwares such as security settings,control panel etc. (Policies)
+
+
+Task 3 Active Directory
+
+- The core of any Windows Domain is the Active Directory Domain Service (AD DS). This service acts as a catalogue that holds the information of all of the "objects" that exist on your network
+ -> Some of the objects supported by AD; users,groups,machines,printers,shared and more
+
+Users: most commom object types , users are on of the objects know as security principals, which means that they can be authenticated by the domain and can be assigned privileges over resources like files or printers
+  -> Users can be used to represent 2 types of enitites
+      People
+      Services
+Machines: - for every machine that joins the AD domain a machine object will be created.
+          - Security Principals
+          - The machines consider themselves as local administrator meaning that no should have access but the computer itself but of course as with any account you can access it if you have the username and password
+          - Password are automatically roated and generally consists of 120 random characters
+          - Identifying accounts is pretty easy , a machine named DC01 will have a machine account called DC01$ -> the machines name is the computers name followed by a dollar sign
+Security groups:
+ - Assign specific access right to files or other to a whole group rathejr to just one user
+ - Security Principals meaning they can have privleges over resources on the network
+ - Groups can have both users and machine as well as include other groups as well
+
+Some of the most important groups in a domain:
+
+Security Group          Description
+	        
+Domain Admins	        Users of this group have administrative privileges over the entire domain. By default, they can administer any computer on the domain, including the DCs.
+Server Operators	Users in this group can administer Domain Controllers. They cannot change any administrative group memberships.
+Backup Operators	Users in this group are allowed to access any file, ignoring their permissions. They are used to perform backups of data on computers.
+Account Operators	Users in this group can create or modify other accounts in the domain.
+Domain Users	        Includes all existing user accounts in the domain.
+Domain Computers	Includes all existing computers in the domain.
+Domain Controllers	Includes all existing DCs on the domain.
+
+Active Directory Users and Computers:
+ - To configure users, groups or machines in Active Directory, we need to log in to the Domain Controller and run "Active Directory Users and Computers"
+ - hierarchy of users,computers and groups in the domai nand organized in Organizational Units (OU's) which are containers objects that allow you to classify users and machines.
+ - OUs can also be used to reset a password
+ - In ad Group Policy Objects (GPOS) can only be linked directly to OUs,domains or sites not Securoty Groups.
+
+Apart from created OU containers there containers created by windows automatically:
+
+Builtin: Contains default groups available to any Windows host.
+Computers: Any machine joining the network will be put here by default. You can move them if needed.
+Domain Controllers: Default OU that contains the DCs in your network.
+Users: Default users and groups that apply to a domain-wide context.
+Managed Service Accounts: Holds accounts used by services in your Windows domain.
+
+
+Security Groups vs OUs
+
+Ous: good for applying policies to users and computers , a user can be a memebr of only one OU at a time , as it woudlnt make sense to try to apply to different sets of policies to a single user
+Security Groups: Used to grant permission over resources. For ex you will use groups if you want a user to access a shared file or network printers. A user can be part of many groups as it is needed to have access to multiple resources
+
+
+
+Tsk 4 Managing users in AD
+
+ - if you cant delete an OU container you need to go to view>Advanced Features then go to the OU you wish to delete >properties>object and uncheck "Protect object from accidental deletion"
+
+ - One of the nice things you can do in AD is to give specific users some control over some OUs. This process is known as delegation and allows you to grant users specific privileges to perform advanced tasks on OUs without needing a Domain Administrator to step in.
+   -> to do this you need to right click on the container and click on Delegate Control and then select a user
