@@ -85,3 +85,79 @@ Task 6 Group Policies
  -> GPOs are distributed to the network via a network share called SYSVOL, which is stored in the DC 
  -> Once a change has been made to any GPOs, it might take up to 2 hours for computers to catch up, to force a computer to sync its GPOs immediatelty you can run "gpupdate /force" in powershell
 
+Task 7 Authentication Methods
+
+When using Windows domains, all credentials are stored in the Domain Controllers. Whenever a user tries to authenticate to a service using domain credentials, the service will need to ask the Domain Controller to verify if they are correct. Two protocols can be used for network authentication in windows domains:
+ -Kerberos: Used by any recent version of Windows. This is the default protocol in any recent domain.
+ -NetNTLM: Legacy authentication protocol kept for compatibility purposes.
+   -> Even though NetNLTM is older, most networrks have both enabled
+
+
+Kerberos Auth - Step 1 (AS-REQ/AS-REP)
+
+User → KDC: username + timestamp (encrypted w/ password-derived key)
+ KDC → User: TGT + Session Key
+ TGT = encrypted w/ krbtgt hash (user can't read it)
+ TGT contains a copy of Session Key inside → KDC doesn't need to store Session Key, just decrypts TGT later to get it
+ Why TGT? So user doesn't resend password/creds every time they need a service ticket
+ When a user wants to connect to a service on the network like a share, website or database, they will use their TGT to ask the KDC for a Ticket Granting Service (TGS). TGS are tickets that allow connection only to the specific service they were created for. To request a TGS, the user will send their username and a timestamp encrypted using the Session Key, along with the TGT and a Service Principal Name (SPN), which indicates the service and server name we intend to access. As a result, the KDC will send us a TGS along with a Service Session Key, which we will need to authenticate to the service we want to access. The TGS is encrypted using a key derived from the Service Owner Hash. The Service Owner is the user or machine account that the service runs under. The TGS contains a copy of the Service Session Key on its encrypted contents so that the Service Owner can access it by decrypting the TGS.
+
+Kerberos Auth - Step 2 (TGS-REQ/TGS-REP)
+ User → KDC: username + timestamp (encrypted w/ Session Key) + TGT + SPN (target service/server)
+ KDC → User: TGS + Service Session Key
+ TGS (Ticket Granting Service) = encrypted w/ Service Owner's hash (the account the service runs under)
+ TGS contains copy of Service Session Key inside → Service Owner decrypts it to get their copy
+ Purpose: TGS only grants access to the one specific service named in the SPN
+
+NetNTLM Auth
+ NetNTLM works using a challenge-response mechanism
+ The user's password (or hash) is never transmitted through the network for security
+
+Task 8 Trees,Forests and Trusts
+
+AD Trees
+Why trees exist:
+As a company grows (e.g. expands to a new country), a single domain gets messy — different laws, different IT teams, each needing control over only their own resources. A giant OU structure with delegation can work, but gets hard to manage.
+Solution → Trees
+
+AD lets you join multiple domains that share the same namespace into a Tree.
+Example: thm.local splits into uk.thm.local and us.thm.local
+Each subdomain has its own DC, users, computers, and GPOs — managed independently
+
+Benefits:
+
+UK IT manages UK resources only, US IT manages US resources only (they can't touch each other's stuff)
+Each domain has its own Domain Admins (full control of their domain only)
+Policies (GPOs) can differ per domain
+
+New group: Enterprise Admins
+
+Has admin rights over every domain in the tree/forest (the "boss" group)
+Domain Admins = control one domain
+Enterprise Admins = control all domains
+
+AD Forests & Trust Relationships
+-Forests
+Why forests exist:
+Company grows further and acquires another company (e.g. MHT Inc.) with its own separate domain tree and namespace. Merging trees with different namespaces into one network forms a Forest.
+
+Tree = domains sharing the same namespace
+Forest = multiple trees with different namespaces, joined together
+
+-Trust Relationships
+Problem: A user in THM UK needs to access a shared file on MHT ASIA, but they belong to separate trees. How can this work?
+Solution: Trust relationships connect domains so users can be authorized to access resources across them.
+->One-way trust:
+
+If Domain AAA trusts Domain BBB, users from BBB can be authorized to access resources on AAA
+Note: trust direction is opposite to the direction of access
+
+->Two-way trust:
+
+Both domains trust each other, so users from either side can be authorized on the other
+This is the default relationship formed when domains join a tree or forest
+
+Important:
+Trust does not automatically grant access to all resources. It simply makes cross-domain authorization possible; what gets authorized is still up to the administrators.
+
+
