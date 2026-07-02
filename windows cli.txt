@@ -44,4 +44,4 @@ shutdown: can be used with multiple filters some of which are:
   /r : shutdown and restart
   /s: shutdown
   /l: log off
-  /a: abord system shutdown
+  /a: abord system shutdown 
