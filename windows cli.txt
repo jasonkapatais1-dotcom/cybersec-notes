@@ -1,4 +1,4 @@
-cd : simillar to pwd in linux tel lwhere i am also used for other, also navigate such as enter folders and go back
+cd : simillar to pwd in linux tells me where i am, also used for other, also navigate such as enter folders and go back
 dir: list directories
 dir /a: show hidden files
 dir /s: search a file
@@ -13,3 +13,35 @@ net: manager netwrok sources
  - netstat: Per the help manual, this command will display protocol statistics and current TCP/IP network connections.
  - /? will not work to get a manual of the net command so net help must be used instead 
 gpupdate /force : force gpo update
+ver
+ping target_name: We send a specific ICMP packet and listen for a response. If a response is received, we know that we can reach the target and that the target can reach us.
+tracert target_name
+nslookup example.com: looks for a host or domain and give us back the ip address
+ - nslookup example.com 1.1.1.1
+netstat: Displays current connections and listening ports
+ >  -a displays all established connections and listening ports
+ >  -b shows the program associated with each listening port and established connection
+ >  -o reveals the process ID (PID) associated with the connection
+ >  -n uses a numerical form for addresses and port numbers
+   > can also combine all of them: netstat -abon
+tree: visually represent folders
+mkdir: make directory ex. mkdir Computer
+rmdir: remove directory ex.rmdir Computer
+type: simialr to cat in linux give the contents of a certain file
+copy: allows to copy files from one location to another ex.copy test.txt test2.txt (a new file named test2.txt will be created)
+move: move a file to another directory
+del or erase: deletes files
+  -> note: can type the * after a command to copy,delete etc. all of the files with the specific extension in that directory ex. copy *.md C:\Markdown (this will copy all files ending in .md and transfer them to C:\Markdown)
+tasklist: displays all running proccesses like task manager
+ -> tasklist /? to see all available filters
+  -> ex. tasklist /FI "imagename eq sshd.exe" : search for tasks related to sshd.exe
+taskkill: used to kill a task ( to do this we most know the PID) ex. tasskill /PID 4567
+chkdsk: checks the file system and disk volumes for errors and bad sectors.
+driverquery: displays a list of installed device drivers.
+sfc /scannow: scans system files for corruption and repairs them if possible.
+- | more -> at the end of a command
+shutdown: can be used with multiple filters some of which are:
+  /r : shutdown and restart
+  /s: shutdown
+  /l: log off
+  /a: abord system shutdown
