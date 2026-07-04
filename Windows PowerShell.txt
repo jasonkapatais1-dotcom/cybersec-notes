@@ -46,3 +46,37 @@ Example: Find-Module -Name "PowerShell*" returns any module whose name starts wi
 Install-Module: downloads and installs a module you've found, making its cmdlets available for use.
 
 Example: Install-Module -Name "PowerShellGet" installs that module. If the repository isn't marked as trusted, PowerShell will prompt you to confirm before installing, since it's treating that source as unverified by default.
+
+Task 4 Navigating the File System and Working with Files
+- Get-childItem : dir -> like ls in linux , can also be used with -path
+- Set-location : cd 
+- New-Item -path "..." -ItempType "Need to specify if its a File or Directory"
+- Remove-Item -Path "..." : rmdir,del
+- Copy-Item -Path "..." -Destination "..." : copy
+- Move-Item -Path "..." -Destination "..." : move
+Get-Content : type
+
+Task 5 Pipping,Filterering, and Sorting Data
+- PowerShell Piping
+Piping sends the output of one command into the next using |. In PowerShell this passes full objects (data plus properties/methods), not just plain text.
+-> Sort-Object: sorts objects by a property
+-> Get-ChildItem | Sort-Object Length: Lists files sorted by size.
+Where-Object: filters objects based on a condition
+Get-ChildItem | Where-Object -Property "Extension" -eq ".txt": Returns only .txt files.
+
+Comparison operators used with Where-Object:
+
+-eq equal to
+-ne not equal to
+-gt greater than
+-ge greater than or equal to
+-lt less than
+-le less than or equal to
+
+Can also filter by pattern match:
+Get-ChildItem | Where-Object -Property "Name" -like "ship*": Returns files whose name starts with "ship".
+Select-Object: picks specific properties to display, or limits result count
+ ->Get-ChildItem | Select-Object Name,Length: Shows only Name and Length columns instead of full output.
+- Pipelines can chain more than two cmdlets together (e.g. filter then sort then select).
+- Select-String: searches for text patterns inside files (like grep/findstr)
+Select-String -Path ".\captain-hat.txt" -Pattern "hat": Returns matching lines with line numbers. Supports regex for more advanced pattern matching.
